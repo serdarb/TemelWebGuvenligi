@@ -1,0 +1,28 @@
+﻿<div>
+
+    <h2>Bilgi Kaydetme Formu</h2>
+    <form action="/" method="post">
+        <span>Bilgi</span>
+        <input type="text" name="bilgi" value="" />
+        <br />
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Kaydet" />
+        <div>
+            @ViewBag.Msg
+        </div>
+    </form>
+
+
+</div>
+
+<div>
+    <h2>Kaydedilen Bilgiler</h2>
+
+
+    @foreach (var item in ViewBag.Bilgiler)
+    {
+        @Html.Raw(item)
+        <br />
+    }
+
+</div>

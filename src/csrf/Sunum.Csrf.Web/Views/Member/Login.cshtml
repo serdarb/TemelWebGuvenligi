@@ -1,0 +1,21 @@
+﻿<div>
+
+    <h2>Giriş Formu</h2>
+    <form action="/Member/Login" method="post">
+        <span>Kullanıcı Adı</span>
+        <input type="text" name="user" value="" />
+        <br />
+
+        <span>Şifre</span>
+        <input type="password" name="pass" value="" />
+        <br />
+
+        @Html.AntiForgeryToken()
+
+        <input type="submit" value="Giriş" />
+        <div>
+            @ViewBag.Msg
+        </div>
+    </form>
+
+</div>

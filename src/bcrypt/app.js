@@ -19,7 +19,7 @@ var authChecker = function(req, res, next){
 		&& req.session.user.loggedIn) {
 	    next();
 	}
-	else {
+	else {		
 	    res.redirect('/login');
 	}	
 }
@@ -54,15 +54,17 @@ app.post('/login', function(req, res) {
 	var pass = req.body.pass.trim();
 
 	user.findOne({email: email}, function(err, item) {		
-
 		if (bcrypt.compareSync(pass, item.pass)) {
 			
 			req.session.user = {loggedIn : true, email : email, name:item.name};
 			res.redirect('/');
+		}
+		else{
+			res.sendfile('./views/failed.html');
 		};        
     }); 
   
-    res.sendfile('./views/failed.html');
+    
 });
 
 app.use(function(req, res){ res.send('Hello'); });

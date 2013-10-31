@@ -6,10 +6,17 @@ namespace Sunum.Csrf.Web.Controllers
 {
     public class HomeController : BaseController
     {
+        object _lock = new object();
+
         string path = "App_Data/data.txt";
         private void BindList()
         {
-            var bilgiler = System.IO.File.ReadAllLines(Server.MapPath(path));
+            string[] bilgiler;
+            lock (_lock)
+            {
+                 bilgiler = System.IO.File.ReadAllLines(Server.MapPath(path));    
+            }
+            
             if (bilgiler != null)
             {
                 ViewBag.Bilgiler = bilgiler.ToList();
@@ -27,10 +34,13 @@ namespace Sunum.Csrf.Web.Controllers
             return View();
         }
 
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Index(string bilgi)
         {
-            System.IO.File.AppendAllLines(Server.MapPath(path), new[] { bilgi });
+            lock (_lock)
+            {
+                System.IO.File.AppendAllLines(Server.MapPath(path), new[] { bilgi });
+            }            
             BindList();
             return View();
         }

@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+birinci bilgiyi kaydettik
+csrf
+deneme

@@ -19,7 +19,7 @@ namespace Sunum.Csrf.Web.Controllers
             return View();
         }
 
-        [HttpPost, ValidateAntiForgeryToken, AllowAnonymous]
+        [HttpPost, AllowAnonymous]
         public ActionResult Login(string user, string pass)
         {
             if (string.IsNullOrEmpty(user))

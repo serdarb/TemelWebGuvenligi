@@ -12,7 +12,7 @@ namespace Sunum.Xss.Web.Controllers
         {
             var bilgiler = System.IO.File.ReadAllLines(Server.MapPath(path));
             if (bilgiler != null)
-            {
+            {                
                 ViewBag.Bilgiler = bilgiler.Select(x => Sanitizer.GetSafeHtml(x)).ToList();
             }
             else
